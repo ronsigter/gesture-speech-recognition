@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import onHandleSpeak from './utils/TextToSpeech'
+import SpeechToText from './utils/SpeechToText'
 
 function App() {
+  const [textToRead, setTextToRead] = useState("")
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input
+        value={textToRead}
+        onChange={(e) => setTextToRead(e.target.value)}
+      />
+      <button onClick={() => onHandleSpeak(textToRead)}>
+        Speak
+      </button>
+      <br/>
+      <SpeechToText/>
     </div>
   );
 }

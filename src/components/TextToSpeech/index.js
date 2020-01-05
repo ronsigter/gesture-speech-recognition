@@ -22,8 +22,15 @@ export default () => {
           size="large"
           type="primary"
           onClick={() => speak({ text: value })}
+          disabled={value.length <= 0}
         >
           <span role="img">🔈 Speak</span>
+        </Button>
+        <Button
+          size="large"
+          onClick={() => setValue("")}
+        >
+          <span role="img">Clear</span>
         </Button>
       </div>
     </div>

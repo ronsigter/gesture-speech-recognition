@@ -1,15 +1,21 @@
 import React from 'react';
-import TextToSpeech from './utils/TextToSpeech'
-import SpeechToText from './utils/SpeechToText'
+import TextToSpeech from './components/TextToSpeech/'
+import SpeechToText from './components/SpeechToText/'
+
+import './app.scss'
 
 function App() {
   return (
-    <div className="App">
-      <TextToSpeech/>
-      <br/>
-      <SpeechToText/>
+    <div className="container">
+      <h1 className="title">Gesture-Speech-Recognition</h1>
+      <div className="item">
+        <TextToSpeech/>
+      </div>
+      <div className="item">
+        <SpeechToText/>
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;

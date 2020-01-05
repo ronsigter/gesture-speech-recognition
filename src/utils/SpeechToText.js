@@ -55,7 +55,6 @@ const SpeechToText = () => {
 
       if(!mobileRepeatBug) {
         noteContent = transcript
-        console.log(noteContent)
         speechText.current.value = noteContent
       }
     }

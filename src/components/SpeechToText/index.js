@@ -19,6 +19,7 @@ export default () => {
           rows="5"
           value={value}
           onChange={event => setValue(event.target.value)}
+          disabled
         />
       </div>
       {listening &&

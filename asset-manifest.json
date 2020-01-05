@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/gesture-speech-recognition/static/js/main.286c2609.chunk.js",
+    "main.js.map": "/gesture-speech-recognition/static/js/main.286c2609.chunk.js.map",
+    "runtime-main.js": "/gesture-speech-recognition/static/js/runtime-main.a0c7b6c1.js",
+    "runtime-main.js.map": "/gesture-speech-recognition/static/js/runtime-main.a0c7b6c1.js.map",
+    "static/js/2.f4720c53.chunk.js": "/gesture-speech-recognition/static/js/2.f4720c53.chunk.js",
+    "static/js/2.f4720c53.chunk.js.map": "/gesture-speech-recognition/static/js/2.f4720c53.chunk.js.map",
+    "index.html": "/gesture-speech-recognition/index.html",
+    "precache-manifest.9320e59c13eb707eabfe5161a0e9ce54.js": "/gesture-speech-recognition/precache-manifest.9320e59c13eb707eabfe5161a0e9ce54.js",
+    "service-worker.js": "/gesture-speech-recognition/service-worker.js",
+    "static/js/2.f4720c53.chunk.js.LICENSE": "/gesture-speech-recognition/static/js/2.f4720c53.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a0c7b6c1.js",
+    "static/js/2.f4720c53.chunk.js",
+    "static/js/main.286c2609.chunk.js"
+  ]
+}

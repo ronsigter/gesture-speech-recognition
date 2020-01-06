@@ -7,7 +7,7 @@ import './app.scss'
 import { Button } from 'antd'
 
 function App() {
-  const [tab, setTab] = useState("app")
+  const [tab, setTab] = useState("bluetooth")
   return (
     <div className="container">
       <div>
@@ -16,14 +16,14 @@ function App() {
       </div>
       <h1 className="title">Gesture-Speech-Recognition</h1>
       { tab === "app" &&
-        <div className="item">
-          <TextToSpeech/>
-        </div>
-      }
-      { tab === "app" &&
-        <div className="item">
-          <SpeechToText/>
-        </div>
+        <>
+          <div className="item">
+            <TextToSpeech/>
+          </div>
+          <div className="item">
+            <SpeechToText/>
+          </div>
+        </>
       }
       { tab === "bluetooth" &&
         <div className="item">

@@ -1,17 +1,20 @@
-import React from 'react'
+import React, {useState, useRef} from 'react'
 
 let deviceCache = null
 let characteristicCache = null
 
-const Service = 'heart_rate';
-const Characteristic = 'heart_rate_measurement';
+const Service = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+const Characteristic = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
 
 const options = {
   filters: [{services: [Service]}],
-  // acceptAllDevices: true
+  // acceptAllDevices: true,
+  // optionalServices: []
 }
 
 export default () => {
+  const [logText, setLogText] = useState("")
+  const logRef = useRef(null)
   // Launch Bluetooth device chooser and connect to the selected
   const connect = () => {
     return (deviceCache ? Promise.resolve(deviceCache) :
@@ -125,11 +128,7 @@ export default () => {
   }
 
   const handleCharacteristicValueChanged = (event) => {
-    const value = event.target.value.getUint8(1)
-    console.log("0", event.target.value.getUint8(0))
-    console.log("1", event.target.value.getUint8(1))
-    console.log("2", event.target.value.getUint8(2))
-    console.log("3", event.target.value.getUint8(3))
+    const value = new TextDecoder().decode(event.target.value)
     log(value, 'in')
   }
 
@@ -139,11 +138,19 @@ export default () => {
 
   // Output to terminal
   const log = (data, type = '') => {
-    console.log(data)
+    const log = `${logRef.current.value}\nData: ${data}`
+    console.log(log)
+    setLogText(log)
   }
 
   return (
     <div>
+      <textarea
+        style={{width: '500px', height: '500px'}}
+        value={logText.replace(/\\n/g, String.fromCharCode(13, 10) )}
+        ref={logRef}
+      />
+      <br/>
       <button onClick={connect}>
         Connect
       </button>

@@ -1,4 +1,6 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useContext, useEffect} from 'react'
+import { StateContext } from '../../Context'
+import GestureGraph from '../GestureGraph'
 
 let deviceCache = null
 let characteristicCache = null
@@ -15,6 +17,8 @@ const options = {
 export default () => {
   const [logText, setLogText] = useState("")
   const logRef = useRef(null)
+  const { dispatch, state } = useContext(StateContext)
+
   // Launch Bluetooth device chooser and connect to the selected
   const connect = () => {
     return (deviceCache ? Promise.resolve(deviceCache) :
@@ -128,8 +132,11 @@ export default () => {
   }
 
   const handleCharacteristicValueChanged = (event) => {
-    const value = new TextDecoder().decode(event.target.value)
-    log(value, 'in')
+    const value = new TextDecoder().decode(event.target.value).replace(/'/g,'')
+    dispatch({
+      type: "updateData",
+      payload: JSON.parse(value)
+    })
   }
 
   const writeToCharacteristic = (characteristic, data) => {
@@ -142,6 +149,11 @@ export default () => {
     console.log(log)
     setLogText(log)
   }
+
+  useEffect(() => {
+    console.log("Disconnecting any devices...")
+    disconnect()
+  }, [])
 
   return (
     <div>

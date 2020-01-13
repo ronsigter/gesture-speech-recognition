@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { useSpeechSynthesis } from "react-speech-kit"
 
-import '../gesture-style.scss'
 import { Button, Input } from 'antd'
 
 export default () => {
@@ -9,14 +8,11 @@ export default () => {
   const { speak } = useSpeechSynthesis()
 
   return (
-    <div className="textspeech-container">
-      <div className="item">
-        <Input.TextArea
-          rows="5"
-          value={value}
-          onChange={event => setValue(event.target.value)}
-        />
-      </div>
+    <div className="tts">
+      <textarea
+        value={value}
+        onChange={event => setValue(event.target.value)}
+      />
       <div className="item">
         <Button
           size="large"

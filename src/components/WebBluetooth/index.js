@@ -1,6 +1,5 @@
 import React, {useState, useRef, useContext, useEffect} from 'react'
 import { StateContext } from '../../Context'
-import GestureGraph from '../GestureGraph'
 
 let deviceCache = null
 let characteristicCache = null
@@ -156,19 +155,20 @@ export default () => {
   }, [])
 
   return (
-    <div className="bluetooth-container">
+    <div className="ble">
+      <div className="item">
+        <button onClick={connect}>
+          Connect
+        </button>
+        <button onClick={disconnect}>
+          disconnect
+        </button>
+      </div>
       <textarea
-        style={{width: '500px', height: '500px'}}
+        style={{width: '100%', height: '100%'}}
         value={logText.replace(/\\n/g, String.fromCharCode(13, 10) )}
         ref={logRef}
       />
-      <br/>
-      <button onClick={connect}>
-        Connect
-      </button>
-      <button onClick={disconnect}>
-        disconnect
-      </button>
     </div>
   )
 }

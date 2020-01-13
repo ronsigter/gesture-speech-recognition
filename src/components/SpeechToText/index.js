@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { useSpeechRecognition } from "react-speech-kit"
 
-import '../gesture-style.scss'
 import { Button, Input } from 'antd'
 
 export default () => {

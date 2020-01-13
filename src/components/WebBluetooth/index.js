@@ -156,7 +156,7 @@ export default () => {
   }, [])
 
   return (
-    <div>
+    <div className="bluetooth-container">
       <textarea
         style={{width: '500px', height: '500px'}}
         value={logText.replace(/\\n/g, String.fromCharCode(13, 10) )}

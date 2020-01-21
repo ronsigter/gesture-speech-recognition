@@ -1,4 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import axios from 'axios'
+
+import { StateContext } from '../../Context'
 import { useSpeechRecognition } from "react-speech-kit"
 
 import { Button, Input } from 'antd'
@@ -10,17 +13,33 @@ export default () => {
       setValue(result)
     }
   })
+  const { dispatch } = useContext(StateContext)
+
+  // axios.post('https://courses.startasl.com/mod/glossary/view.php?hook=how%20are%20you&searchbutton=Search&mode=search&id=463',
+  // { headers: { "Origin": "google.com" }})
+  // .then( response => {
+  //   console.log(response)
+  // })
 
   return (
-    <div className="speechtext-container">
+    <div className="tts">
       <div className="item">
-        <Input.TextArea
-          rows="5"
-          value={value}
-          onChange={event => setValue(event.target.value)}
-          disabled
-        />
+        <Button
+          size="large"
+          type="primary"
+          onClick={() => dispatch({
+            type: "updateTab",
+            payload: "tts"
+          })}
+        ><span>Go to Text to Speech</span>
+        </Button>
       </div>
+      <textarea
+        value={value}
+        onChange={event => setValue(event.target.value)}
+        disabled
+        readOnly
+      />
       {listening &&
         <div className="item">
           <div>Go ahead I'm listening</div>

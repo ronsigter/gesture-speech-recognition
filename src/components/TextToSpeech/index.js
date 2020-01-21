@@ -1,15 +1,29 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { useSpeechSynthesis } from "react-speech-kit"
+import { StateContext } from '../../Context'
 
 import { Button, Input } from 'antd'
 
 export default () => {
   const [value, setValue] = useState("")
   const { speak } = useSpeechSynthesis()
+  const { dispatch } = useContext(StateContext)
 
   return (
     <div className="tts">
+      <div className="item">
+        <Button
+          size="large"
+          type="primary"
+          onClick={() => dispatch({
+            type: "updateTab",
+            payload: "stt"
+          })}
+        ><span>Go to Speech to Text</span>
+        </Button>
+      </div>
       <textarea
+        placeholder="Type what you want to hear"
         value={value}
         onChange={event => setValue(event.target.value)}
       />

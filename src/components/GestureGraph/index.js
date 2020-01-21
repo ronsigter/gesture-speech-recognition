@@ -4,7 +4,7 @@ import {StateContext} from '../../Context'
 import {XYPlot, LineSeries, XAxis, YAxis} from 'react-vis';
 
 export default () => {
-  const { dispatch, state } = useContext(StateContext)
+  const { state } = useContext(StateContext)
   const [graphSize, setGraphSize] = useState({height: 200, width: 350})
   const graphContainer = useRef(null)
 
@@ -16,13 +16,12 @@ export default () => {
     })
   }, [])
 
-  console.log(graphSize)
   return (
     <div className="graph" ref={graphContainer}>
       <div>
         <div className="title">Pinky</div>
         <XYPlot className="linegraph" height={graphSize.height} width={graphSize.width}>
-          <LineSeries data={state.data.pinky} />
+          <LineSeries data={state.data.pinky} color="red" style={{strokeWidth: 4}}/>
           <XAxis orientation="bottom" title="time" />
           <YAxis title="resistance"/>
         </XYPlot>
@@ -30,7 +29,7 @@ export default () => {
       <div>
         <div className="title">Ring</div>
         <XYPlot className="linegraph" height={graphSize.height} width={graphSize.width}>
-          <LineSeries data={state.data.ring} />
+          <LineSeries data={state.data.ring} color="green" style={{strokeWidth: 4}}/>
           <XAxis orientation="bottom" title="time" />
           <YAxis title="resistance"/>
         </XYPlot>
@@ -38,7 +37,7 @@ export default () => {
       <div >
         <div className="title">Middle</div>
         <XYPlot className="linegraph" height={graphSize.height} width={graphSize.width}>
-          <LineSeries data={state.data.middle} />
+          <LineSeries data={state.data.middle} color="blue" style={{strokeWidth: 4}}/>
           <XAxis orientation="bottom" title="time" />
           <YAxis title="resistance"/>
         </XYPlot>
@@ -46,15 +45,15 @@ export default () => {
       <div>
         <div className="title">Index</div>
         <XYPlot className="linegraph" height={graphSize.height} width={graphSize.width}>
-          <LineSeries data={state.data.index} />
+          <LineSeries data={state.data.index} color="orange" style={{strokeWidth: 4}}/>
           <XAxis orientation="bottom" title="time" />
           <YAxis title="resistance"/>
         </XYPlot>
       </div>
       <div>
-        <div className="title">thumb</div>
+        <div className="title">Thumb</div>
         <XYPlot className="linegraph" height={graphSize.height} width={graphSize.width}>
-          <LineSeries data={state.data.thumb} />
+          <LineSeries data={state.data.thumb} color="black" style={{strokeWidth: 4}}/>
           <XAxis orientation="bottom" title="time" />
           <YAxis title="resistance"/>
         </XYPlot>
@@ -62,7 +61,7 @@ export default () => {
       <div>
         <div className="title">X</div>
         <XYPlot className="linegraph" height={graphSize.height} width={graphSize.width}>
-          <LineSeries data={state.data.x} />
+          <LineSeries data={state.data.x} color="aqua" style={{strokeWidth: 4}}/>
           <XAxis orientation="bottom" title="time" />
           <YAxis title="resistance"/>
         </XYPlot>
@@ -70,7 +69,7 @@ export default () => {
       <div>
         <div className="title">Y</div>
         <XYPlot className="linegraph" height={graphSize.height} width={graphSize.width}>
-          <LineSeries data={state.data.y} />
+          <LineSeries data={state.data.y} color="fuchsia" style={{strokeWidth: 4}}/>
           <XAxis orientation="bottom" title="time" />
           <YAxis title="resistance"/>
         </XYPlot>
@@ -78,7 +77,7 @@ export default () => {
       <div>
         <div className="title">Z</div>
         <XYPlot className="linegraph" height={graphSize.height} width={graphSize.width}>
-          <LineSeries data={state.data.z} />
+          <LineSeries data={state.data.z} color="lime" style={{strokeWidth: 4}}/>
           <XAxis orientation="bottom" title="time" />
           <YAxis title="resistance"/>
         </XYPlot>

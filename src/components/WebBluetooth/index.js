@@ -16,15 +16,15 @@ const options = {
 export default () => {
   const [logText, setLogText] = useState("")
   const logRef = useRef(null)
-  const { dispatch, state } = useContext(StateContext)
+  const { dispatch } = useContext(StateContext)
 
   // Launch Bluetooth device chooser and connect to the selected
   const connect = () => {
     return (deviceCache ? Promise.resolve(deviceCache) :
-      requestBluetoothDevice()).
-      then(device => connectDeviceAndCacheCharacteristic(device)).
-      then(characteristic => startNotifications(characteristic)).
-      catch(error => log(error))
+      requestBluetoothDevice())
+      .then(device => connectDeviceAndCacheCharacteristic(device))
+      .then(characteristic => startNotifications(characteristic))
+      .catch(error => log(error))
   }
 
   // Disconnect from the connected device
@@ -168,6 +168,7 @@ export default () => {
         style={{width: '100%', height: '100%'}}
         value={logText.replace(/\\n/g, String.fromCharCode(13, 10) )}
         ref={logRef}
+        readOnly
       />
     </div>
   )

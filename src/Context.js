@@ -16,6 +16,10 @@ let reducer = (state, action) => {
 
       const data = { pinky, ring, middle, index, thumb, x, y, z }
       return { ...state, data }
+
+    case "updateTab":
+      console.log("Context", { ...state, tab: action.payload })
+      return { ...state, tab: action.payload }
     default:
       return
   }
@@ -24,15 +28,16 @@ let reducer = (state, action) => {
 const initialState = {
   loading: true,
   data: {
-    pinky: [{x:0, y:0}],
-    ring: [{x:0, y:0}],
-    middle: [{x:0, y:0}],
-    index: [{x:0, y:0}],
-    thumb: [{x:0, y:0}],
-    x: [{x:0, y:0}],
-    y: [{x:0, y:0}],
-    z: [{x:0, y:0}]
+    pinky: [{x:0, y:0},{x:1, y:1},{x:2, y:2},{x:3, y:3}],
+    ring: [{x:0, y:0},{x:1, y:1},{x:2, y:2},{x:3, y:3}],
+    middle: [{x:0, y:0},{x:1, y:1},{x:2, y:2},{x:3, y:3}],
+    index: [{x:0, y:0},{x:1, y:1},{x:2, y:2},{x:3, y:3}],
+    thumb: [{x:0, y:0},{x:1, y:1},{x:2, y:2},{x:3, y:3}],
+    x: [{x:0, y:0},{x:1, y:1},{x:2, y:2},{x:3, y:3}],
+    y: [{x:0, y:0},{x:1, y:1},{x:2, y:2},{x:3, y:3}],
+    z: [{x:0, y:0},{x:1, y:1},{x:2, y:2},{x:3, y:3}]
   },
+  tab: "tts"
 }
 
 const StateContext = createContext(initialState)

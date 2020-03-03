@@ -9,7 +9,7 @@ import {StateContext} from './Context'
 import './app.scss'
 function App() {
   const { state } = useContext(StateContext)
-  console.log("State", state)
+  console.log("State", state.data)
   return (
     <div className="container">
       <div className="title">

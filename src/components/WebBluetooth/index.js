@@ -132,6 +132,7 @@ export default () => {
 
   const handleCharacteristicValueChanged = (event) => {
     const value = new TextDecoder().decode(event.target.value).replace(/'/g,'')
+    console.log("rx: ", value)
     dispatch({
       type: "updateData",
       payload: JSON.parse(value)

@@ -1,25 +1,53 @@
-import React, { useState, useContext } from "react"
-import axios from 'axios'
+import React, { useState, useContext } from "react";
+import axios from "axios";
 
-import { StateContext } from '../../Context'
-import { useSpeechRecognition } from "react-speech-kit"
+import { StateContext } from "../../Context";
+import { useSpeechRecognition } from "react-speech-kit";
 
-import { Button, Input } from 'antd'
+import { Button, Input } from "antd";
+import ThumbNail from "./ThumbNail";
 
 export default () => {
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState("");
+  const [videos, setVideos] = useState({
+    loading: true,
+    links: [{ title: "hello", link: "hehe" }]
+  });
+
+  const CancelToken = axios.CancelToken;
+  const source = CancelToken.source();
+
   const { listen, listening, stop } = useSpeechRecognition({
     onResult: result => {
-      setValue(result)
+      console.log(result);
+      // getSpeechVideo(result);
+      setValue(result);
+    },
+    onEnd: () => {
+      console.log(("End: ", value));
+      getSpeechVideo(value);
     }
-  })
-  const { dispatch } = useContext(StateContext)
+  });
+  const { dispatch } = useContext(StateContext);
 
-  // axios.post('https://courses.startasl.com/mod/glossary/view.php?hook=how%20are%20you&searchbutton=Search&mode=search&id=463',
-  // { headers: { "Origin": "google.com" }})
-  // .then( response => {
-  //   console.log(response)
-  // })
+  const getSpeechVideo = search => {
+    setVideos({ loading: true, links: [] });
+
+    console.log("scrapping...");
+    axios
+      .get(`http://localhost:4000/asl?search=${search.split(" ").join("+")}`, {
+        cancelToken: source.token
+      })
+      .then(response => {
+        console.log("DONE!");
+        setVideos({ loading: false, links: response.data.links });
+      })
+      .catch(thrown => {
+        if (axios.isCancel(thrown)) {
+          console.log("Request canceled", thrown.message);
+        }
+      });
+  };
 
   return (
     <div className="tts">
@@ -27,24 +55,30 @@ export default () => {
         <Button
           size="large"
           type="primary"
-          onClick={() => dispatch({
-            type: "updateTab",
-            payload: "tts"
-          })}
-        ><span>Go to Text to Speech</span>
+          onClick={() =>
+            dispatch({
+              type: "updateTab",
+              payload: "tts"
+            })
+          }
+        >
+          <span>Go to Text to Speech</span>
         </Button>
       </div>
-      <textarea
-        value={value}
-        onChange={event => setValue(event.target.value)}
-        disabled
-        readOnly
-      />
-      {listening &&
+      <textarea value={value} disabled readOnly />
+      <div className="item videos">
+        {videos.loading
+          ? "Loading Videos..."
+          : videos.links.map((link, index) => (
+              <ThumbNail key={index} video={link} />
+            ))}
+      </div>
+
+      {listening && (
         <div className="item">
           <div>Go ahead I'm listening</div>
         </div>
-      }
+      )}
       <div className="item">
         <Button
           size="large"
@@ -54,15 +88,10 @@ export default () => {
         >
           <span role="img">🎤 Listen</span>
         </Button>
-        <Button
-          size="large"
-          type="danger"
-          onClick={stop}
-          disabled={!listening}
-        >
+        <Button size="large" type="danger" onClick={stop} disabled={!listening}>
           <span role="img">🚫 Stop Listening</span>
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};

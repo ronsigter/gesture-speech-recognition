@@ -1,18 +1,17 @@
-import React, { useState, useContext, useEffect } from "react"
-import { useSpeechSynthesis } from "react-speech-kit"
-import { StateContext } from '../../Context'
+import React, { useState, useContext, useEffect } from "react";
+import { useSpeechSynthesis } from "react-speech-kit";
+import { StateContext } from "../../Context";
 
-import { Button, Input } from 'antd'
+import { Button, Input } from "antd";
 
 export default () => {
-  const [value, setValue] = useState("")
-  const { speak } = useSpeechSynthesis()
-  const { state, dispatch } = useContext(StateContext)
-
+  const [value, setValue] = useState("");
+  const { speak } = useSpeechSynthesis();
+  const { state, dispatch } = useContext(StateContext);
 
   useEffect(() => {
-    speak({ text: state.data.predict })
-  }, [state.data.predict])
+    speak({ text: state.data.predict });
+  }, [state.data.predict]);
 
   return (
     <div className="tts">
@@ -20,11 +19,14 @@ export default () => {
         <Button
           size="large"
           type="primary"
-          onClick={() => dispatch({
-            type: "updateTab",
-            payload: "stt"
-          })}
-        ><span>Go to Speech to Text</span>
+          onClick={() =>
+            dispatch({
+              type: "updateTab",
+              payload: "stt"
+            })
+          }
+        >
+          <span>Go to Speech to Text</span>
         </Button>
       </div>
       <textarea
@@ -41,13 +43,10 @@ export default () => {
         >
           <span role="img">🔈 Speak</span>
         </Button>
-        <Button
-          size="large"
-          onClick={() => setValue("")}
-        >
+        <Button size="large" onClick={() => setValue("")}>
           <span role="img">Clear</span>
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};

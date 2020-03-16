@@ -35,9 +35,14 @@ export default () => {
 
     console.log("scrapping...");
     axios
-      .get(`http://localhost:4000/asl?search=${search.split(" ").join("+")}`, {
-        cancelToken: source.token
-      })
+      .get(
+        `https://gesture-scrape.herokuapp.com/asl?search=${search
+          .split(" ")
+          .join("+")}`,
+        {
+          cancelToken: source.token
+        }
+      )
       .then(response => {
         console.log("DONE!");
         setVideos({ loading: false, links: response.data.links });

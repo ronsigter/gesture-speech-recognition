@@ -1,34 +1,68 @@
-import React, { useContext } from "react";
-import TextToSpeech from "./components/TextToSpeech/";
-import SpeechToText from "./components/SpeechToText/";
-import WebBluetooth from "./components/WebBluetooth/";
-import GestureGraph from "./components/GestureGraph";
+import React, { useState } from "react";
 
-import { StateContext } from "./Context";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
 
-import "./app.scss";
+import Ble from "./components/Ble";
+import Ges from "./components/TTS";
+import Spe from "./components/STT";
+
 function App() {
-  const { state } = useContext(StateContext);
-  console.log("State", state.data);
-  return (
-    <div className="container">
-      <div className="title">
-        <h1 className="title">Gesture-Speech-Recognition</h1>
-        <p>
-          To use Bluetooth and Microphone, enable chrome experimental mode by
-          typing
-          <i style={{ color: "blue" }}>
-            {" "}
-            "chrome://flags/#enable-experimental-web-platform-features"{" "}
-          </i>
-          in Chrome browser
-        </p>
-      </div>
+  const [view, setView] = useState("ble");
 
-      <WebBluetooth />
-      {state.tab === "tts" ? <TextToSpeech /> : <SpeechToText />}
-      <GestureGraph />
-    </div>
+  return (
+    <Container fluid style={{ height: "90vh" }}>
+      <Nav
+        fill
+        justify
+        variant="tabs"
+        defaultActiveKey="ble"
+        onSelect={selectedKey => setView(selectedKey)}
+      >
+        <Nav.Item>
+          <Nav.Link eventKey="ble">Bluetooth</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="ges">Gesture</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="spe">Speech</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <Container
+        fluid
+        style={{
+          position: "fixed",
+          height: "100%",
+          width: "95%",
+          display: view === "ble" ? "block" : "none"
+        }}
+      >
+        <Ble />
+      </Container>
+      <Container
+        fluid
+        style={{
+          position: "fixed",
+          height: "100%",
+          width: "95%",
+          display: view === "ges" ? "block" : "none"
+        }}
+      >
+        <Ges />
+      </Container>
+      <Container
+        fluid
+        style={{
+          position: "fixed",
+          height: "100%",
+          width: "95%",
+          display: view === "spe" ? "block" : "none"
+        }}
+      >
+        <Spe />
+      </Container>
+    </Container>
   );
 }
 

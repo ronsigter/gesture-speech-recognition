@@ -1,13 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
-import 'antd/dist/antd.css'
-import '../node_modules/react-vis/dist/style.css'
+import React from "react";
+import ReactDOM from "react-dom";
 
-import { StateProvider } from './Context'
+import "bootstrap/dist/css/bootstrap.css";
+
+import App from "./App";
+import { StateProvider } from "./Context";
 
 ReactDOM.render(
   <StateProvider>
     <App />
-  </StateProvider>
-  , document.getElementById('root'))
+  </StateProvider>,
+  document.getElementById("root")
+);

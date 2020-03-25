@@ -55,24 +55,26 @@ export default () => {
 
   return (
     <>
-      <Row style={{ height: "50%" }}>
+      <Row
+        className="flex-nowrap align-items-center"
+        style={{ height: "50%", overflowX: "scroll", marginBottom: "8px" }}
+      >
+        {listening
+          ? videos.loading
+            ? "Loading Videos..."
+            : videos.links.map((link, index) => (
+                <ThumbNail key={index} video={link} />
+              ))
+          : "Press 🎤 Listen to speak, then press 🚫 Stop to search for video"}
+      </Row>
+
+      <Row style={{ height: "30%" }}>
         <textarea
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%", fontSize: "2.5em" }}
           value={value}
           disabled
           readOnly
         />
-      </Row>
-
-      <Row
-        className="flex-nowrap align-items-center"
-        style={{ height: "30%", overflowX: "scroll" }}
-      >
-        {videos.loading
-          ? "Loading Videos..."
-          : videos.links.map((link, index) => (
-              <ThumbNail key={index} video={link} />
-            ))}
       </Row>
 
       <Row>

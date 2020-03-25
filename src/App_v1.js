@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import TextToSpeech from "./components/TextToSpeech/";
-import SpeechToText from "./components/SpeechToText/";
-import WebBluetooth from "./components/WebBluetooth/";
+import TextToSpeech from "./components/TextToSpeech";
+import SpeechToText from "./components/SpeechToText";
+import WebBluetooth from "./components/WebBluetooth";
 import GestureGraph from "./components/GestureGraph";
 
 import { StateContext } from "./Context";

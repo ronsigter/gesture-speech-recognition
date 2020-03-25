@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 
 import "bootstrap/dist/css/bootstrap.css";
 
+import "./scroll.scss";
+
 import App from "./App";
 import { StateProvider } from "./Context";
 

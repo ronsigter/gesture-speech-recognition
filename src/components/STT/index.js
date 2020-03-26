@@ -69,7 +69,7 @@ export default () => {
             ))}
       </Row>
 
-      <Row style={{ height: "30%" }}>
+      <Row style={{ height: "20%" }}>
         <textarea
           style={{ width: "100%", height: "100%", fontSize: "2.5em" }}
           value={value}

@@ -174,7 +174,7 @@ export default () => {
 
   return (
     <>
-      <Row style={{ height: "80%" }}>
+      <Row style={{ height: "60%" }}>
         Logs about bluetooth connection:
         <textarea
           style={{ width: "100%", height: "100%" }}

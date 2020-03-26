@@ -174,8 +174,8 @@ export default () => {
 
   return (
     <>
-      <Row style={{ height: "60%" }}>
-        Logs about bluetooth connection:
+      <Row>Logs about bluetooth connection:</Row>
+      <Row style={{ height: "70%" }}>
         <textarea
           style={{ width: "100%", height: "100%" }}
           value={logText.replace(/\\n/g, String.fromCharCode(13, 10))}

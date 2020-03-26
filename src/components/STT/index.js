@@ -55,17 +55,18 @@ export default () => {
 
   return (
     <>
+      <Row>
+        "Press 🎤 Listen to speak, then press 🚫 Stop to search for video"
+      </Row>
       <Row
         className="flex-nowrap align-items-center"
         style={{ height: "50%", overflowX: "scroll", marginBottom: "8px" }}
       >
-        {listening
-          ? videos.loading
-            ? "Loading Videos..."
-            : videos.links.map((link, index) => (
-                <ThumbNail key={index} video={link} />
-              ))
-          : "Press 🎤 Listen to speak, then press 🚫 Stop to search for video"}
+        {videos.loading
+          ? "Loading Videos..."
+          : videos.links.map((link, index) => (
+              <ThumbNail key={index} video={link} />
+            ))}
       </Row>
 
       <Row style={{ height: "30%" }}>

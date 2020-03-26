@@ -79,16 +79,10 @@ export default () => {
       </Row>
 
       <Row>
-        {listening && (
-          <div className="item">
-            <div>Go ahead I'm listening</div>
-          </div>
-        )}
-      </Row>
-
-      <Row>
         <Button onClick={listen} disabled={listening} block>
-          <span role="img">🎤 Listen</span>
+          <span role="img">
+            {listening ? "Go ahead I'm listening" : "🎤 Listen"}
+          </span>
         </Button>
       </Row>
       <Row>

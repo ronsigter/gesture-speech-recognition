@@ -96,7 +96,7 @@ const initialState = {
       { x: 2, y: 2 },
       { x: 3, y: 3 }
     ],
-    predict: "None"
+    predict: "I Love you"
   },
   tab: "tts"
 };

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 
-import Ble from "./components/Ble";
+import Ble from "./components/BLE";
 import Ges from "./components/TTS";
 import Spe from "./components/STT";
 

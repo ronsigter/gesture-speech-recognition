@@ -1,8 +1,8 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer } from 'react';
 
 let reducer = (state, action) => {
   switch (action.type) {
-    case "updateData":
+    case 'updateData':
       const {
         pinky,
         ring,
@@ -12,7 +12,7 @@ let reducer = (state, action) => {
         x,
         y,
         z,
-        predict
+        predict,
       } = state.data;
 
       pinky.push({ x: pinky.length, y: action.payload.pinky });
@@ -33,12 +33,12 @@ let reducer = (state, action) => {
         x,
         y,
         z,
-        predict: action.payload.predict
+        predict: action.payload.predict,
       };
       return { ...state, data };
 
-    case "updateTab":
-      console.log("Context", { ...state, tab: action.payload });
+    case 'updateTab':
+      console.log('Context', { ...state, tab: action.payload });
       return { ...state, tab: action.payload };
     default:
       return;
@@ -52,58 +52,58 @@ const initialState = {
       { x: 0, y: 0 },
       { x: 1, y: 1 },
       { x: 2, y: 2 },
-      { x: 3, y: 3 }
+      { x: 3, y: 3 },
     ],
     ring: [
       { x: 0, y: 0 },
       { x: 1, y: 1 },
       { x: 2, y: 2 },
-      { x: 3, y: 3 }
+      { x: 3, y: 3 },
     ],
     middle: [
       { x: 0, y: 0 },
       { x: 1, y: 1 },
       { x: 2, y: 2 },
-      { x: 3, y: 3 }
+      { x: 3, y: 3 },
     ],
     index: [
       { x: 0, y: 0 },
       { x: 1, y: 1 },
       { x: 2, y: 2 },
-      { x: 3, y: 3 }
+      { x: 3, y: 3 },
     ],
     thumb: [
       { x: 0, y: 0 },
       { x: 1, y: 1 },
       { x: 2, y: 2 },
-      { x: 3, y: 3 }
+      { x: 3, y: 3 },
     ],
     x: [
       { x: 0, y: 0 },
       { x: 1, y: 1 },
       { x: 2, y: 2 },
-      { x: 3, y: 3 }
+      { x: 3, y: 3 },
     ],
     y: [
       { x: 0, y: 0 },
       { x: 1, y: 1 },
       { x: 2, y: 2 },
-      { x: 3, y: 3 }
+      { x: 3, y: 3 },
     ],
     z: [
       { x: 0, y: 0 },
       { x: 1, y: 1 },
       { x: 2, y: 2 },
-      { x: 3, y: 3 }
+      { x: 3, y: 3 },
     ],
-    predict: "I Love you"
+    predict: 'I Love you',
   },
-  tab: "tts"
+  tab: 'tts',
 };
 
 const StateContext = createContext(initialState);
 
-const StateProvider = props => {
+const StateProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
